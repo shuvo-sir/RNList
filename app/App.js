@@ -20,6 +20,7 @@ export default function App(){
             <FlatList
                 data={pokemonList}
                 keyExtractor={(item) => item.id.toString()}
+                ListEmptyComponent={<Text style={styles.listEmptyComponent}>No Item Found</Text>}
                 renderItem={({item}) => {
                     return (
                         <View style={styles.card} key={item.id}>
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#f5f5f5",
         paddingTop: StatusBar.currentHeight,
+        justifyContent: "center",
     },
     ScrollView: {
         paddingHorizontal: 16,
@@ -49,8 +51,14 @@ const styles = StyleSheet.create({
         borderRadius: 13,
         borderWidth: 1,
         marginBottom: 16,
+        flexDirection: "row",
+        justifyContent: "space-between",
     },
     cardText: {
         fontSize: 20,
     },
+    listEmptyComponent: {
+        fontSize: 30,
+        textAlign: "center"
+    }
 });
