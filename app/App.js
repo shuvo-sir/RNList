@@ -1,11 +1,11 @@
 
-import { StatusBar, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { StatusBar, SafeAreaView, ScrollView, StyleSheet, Text, View, FlatList } from "react-native";
 import pokemonList from "../data.json";
 
 export default function App(){
     return (
         <SafeAreaView style = {styles.container}>
-            <ScrollView style={styles.ScrollView}>
+            {/* <ScrollView style={styles.ScrollView}>
                 {pokemonList.map((pokemon) => {
                     return (
                         <View style={styles.card} key={pokemon.id}>
@@ -14,7 +14,22 @@ export default function App(){
                         </View>
                     );
                 })}
-            </ScrollView>
+            </ScrollView> */}
+            {/* Flat list help to smooth scrolling  */}
+            <View style={styles.ScrollView}>
+            <FlatList
+                data={pokemonList}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({item}) => {
+                    return (
+                        <View style={styles.card} key={item.id}>
+                            <Text style = {styles.cardText}>{item.type}</Text>
+                            <Text style = {styles.cardText}>{item.name}</Text>
+                        </View>
+                    );
+                }}
+                />
+                </View>
         </SafeAreaView>
     );
 }
@@ -22,7 +37,7 @@ export default function App(){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "plum",
+        backgroundColor: "#f5f5f5",
         paddingTop: StatusBar.currentHeight,
     },
     ScrollView: {
